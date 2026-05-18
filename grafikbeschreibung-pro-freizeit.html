@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Grafikbeschreibung PRO</title><style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.6}.topbar{background:white;border-bottom:1px solid #e5e7eb;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}.brand{font-weight:900;color:#7c3aed}.userbox{font-weight:900;background:#f3f4f6;border-radius:999px;padding:8px 12px}header{background:linear-gradient(135deg,#7c3aed,#1cb0f6);color:white;text-align:center;padding:60px 20px}header h1{font-size:2.7rem;margin-bottom:10px}.container{max-width:1200px;margin:auto;padding:30px 20px;display:grid;grid-template-columns:1fr 1fr;gap:24px}.card,.login{background:white;border-radius:24px;padding:26px;box-shadow:0 10px 25px rgba(0,0,0,.08);margin-bottom:24px}.login{max-width:540px;margin:45px auto;text-align:center}input,textarea{width:100%;padding:14px;border:2px solid #d1d5db;border-radius:14px;font-size:1rem;margin:10px 0;font-family:Arial}textarea{min-height:280px;resize:vertical;line-height:1.6}button{background:#7c3aed;color:white;border:none;border-radius:16px;padding:14px 20px;font-weight:900;cursor:pointer;box-shadow:0 5px 0 #5b21b6;margin:8px 8px 8px 0}.green{background:#58cc02;box-shadow:0 5px 0 #46a302}.blue{background:#1cb0f6;box-shadow:0 5px 0 #1689c7}.red{background:#dc2626;box-shadow:0 5px 0 #991b1b}.chart{display:flex;flex-direction:column;gap:14px;margin-top:20px}.row{display:grid;grid-template-columns:150px 1fr 55px;gap:10px;align-items:center}.barbox{height:28px;background:#e5e7eb;border-radius:999px;overflow:hidden}.bar{height:100%;background:#7c3aed;border-radius:999px}.label{font-weight:900}.value{font-weight:900;text-align:right}.help{background:#eef2ff;border-left:7px solid #1cb0f6;border-radius:18px;padding:16px;margin:12px 0}.phrase{display:inline-block;background:#f3f4f6;border-radius:999px;padding:8px 12px;font-weight:900;margin:5px;color:#374151}.scorebox{background:#f0fdf4;border-left:7px solid #58cc02;border-radius:18px;padding:18px;margin-top:14px}.warning{background:#fef3c7;border-left:7px solid #f59e0b;border-radius:18px;padding:14px;margin-top:12px}.feedback{display:none;margin-top:14px;padding:16px;border-radius:18px;font-weight:800}.show{display:block}.good{background:#dcfce7;color:#166534}.mid{background:#fef3c7;color:#92400e}.bad{background:#fee2e2;color:#991b1b}.crit{background:#f3f4f6;border-radius:14px;padding:12px;margin:8px 0}.progress{height:16px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin-top:8px}.pbar{height:100%;background:#58cc02;width:0%;transition:.3s}.full{grid-column:1/-1}@media(max-width:900px){.container{grid-template-columns:1fr}header h1{font-size:2rem}.topbar{display:block;text-align:center}.userbox{display:inline-block;margin-top:8px}}
+</style></head><body>
+<div class="topbar"><div class="brand">📊 Grafikbeschreibung PRO</div><div class="userbox">👩‍🎓 <span id="userTop">Gast</span></div></div>
+<section id="loginBox" class="login"><h2>👩‍🎓 Anmeldung</h2><p>Schreibe deinen Namen, um den Schreibtrainer zu starten.</p><input id="studentName" placeholder="Dein Name"><button onclick="login()">Starten</button></section>
+<div id="app" style="display:none"><header><h1>Grafikbeschreibung PRO</h1><p>Thema: Freizeit und Bildschirmzeit bei Jugendlichen</p></header>
+<main class="container">
+<section class="card"><h2>1. Grafik</h2><p><strong>Freizeit und Bildschirmzeit bei Jugendlichen</strong></p><p class="warning">Angaben in Prozent. Mehrfachnennungen sind möglich.</p><div class="chart" id="chart"></div></section>
+<section class="card"><h2>2. Redemittel</h2><div class="help"><strong>Einleitung</strong><br><span class="phrase">Die Grafik zeigt ...</span><span class="phrase">Das Thema der Grafik ist ...</span><span class="phrase">Es geht um ...</span></div><div class="help"><strong>Daten beschreiben</strong><br><span class="phrase">... Prozent der Jugendlichen ...</span><span class="phrase">Der höchste Wert liegt bei ...</span><span class="phrase">Der niedrigste Wert ist ...</span></div><div class="help"><strong>Vergleichen</strong><br><span class="phrase">Im Vergleich dazu ...</span><span class="phrase">... ist höher als ...</span><span class="phrase">Während ..., ...</span></div><div class="help"><strong>Schluss</strong><br><span class="phrase">Auffällig ist, dass ...</span><span class="phrase">Meiner Meinung nach ...</span><span class="phrase">Insgesamt kann man sagen, dass ...</span></div></section>
+<section class="card full"><h2>3. Schreibtrainer</h2><p>Schreibe eine Grafikbeschreibung mit mindestens 90 Wörtern.</p><textarea id="studentText" placeholder="Die Grafik zeigt ..."></textarea><button class="green" onclick="analyzeText()">🤖 Feedback bekommen</button><button class="blue" onclick="insertTemplate()">Textgerüst einfügen</button><button class="red" onclick="resetText()">Zurücksetzen</button><div id="feedbackBox" class="feedback"></div></section>
+<section class="card"><h2>4. Automatische Punktzahl</h2><div class="scorebox"><h3>Gesamtpunktzahl: <span id="totalScore">0</span> / 100</h3><div class="progress"><div class="pbar" id="scoreBar"></div></div><p><strong>Wörter:</strong> <span id="wordCount">0</span></p></div><div id="criteriaBox"></div></section>
+<section class="card"><h2>5. Ergebnisse exportieren</h2><p>Du kannst das Ergebnis als TXT-Datei herunterladen und abgeben.</p><button class="blue" onclick="downloadResults()">⬇ Ergebnisse herunterladen</button><button class="green" onclick="copyResults()">📋 Ergebnisse kopieren</button><div id="exportFeedback" class="feedback"></div></section>
+</main></div>
+<script>
+const CHART_DATA = {"title": "Freizeit und Bildschirmzeit bei Jugendlichen", "labels": ["Sport", "Musik", "Gaming", "Soziale Medien", "Lesen", "Streaming"], "values": [62, 38, 71, 84, 24, 67]};
+const CRITERIA = [{"name": "Einleitung", "points": 20, "keywords": ["grafik", "zeigt", "thema", "jugendliche"]}, {"name": "Daten nennen", "points": 25, "keywords": ["prozent", "%", "wert", "anteil"]}, {"name": "Vergleich", "points": 20, "keywords": ["höher", "niedriger", "mehr", "weniger", "vergleich", "während", "als"]}, {"name": "Auffälligkeit", "points": 20, "keywords": ["auffällig", "am meisten", "am wenigsten", "höchste", "niedrigste"]}, {"name": "Schluss", "points": 15, "keywords": ["meiner meinung", "ich finde", "wichtig", "insgesamt", "schluss"]}];
+let currentUser = "";
+let lastResult = null;
+function login(){
+let name=document.getElementById("studentName").value.trim();
+if(name===""){alert("Bitte schreibe deinen Namen.");return;}
+currentUser=name;localStorage.setItem("grafik_user",currentUser);
+document.getElementById("userTop").innerText=currentUser;
+document.getElementById("loginBox").style.display="none";
+document.getElementById("app").style.display="block";
+renderChart();renderCriteria([]);
+}
+function renderChart(){
+let box=document.getElementById("chart");box.innerHTML="";
+CHART_DATA.labels.forEach((label,i)=>{
+let value=CHART_DATA.values[i];
+box.innerHTML += '<div class="row"><div class="label">'+label+'</div><div class="barbox"><div class="bar" style="width:'+value+'%"></div></div><div class="value">'+value+'%</div></div>';
+});
+}
+function normalize(text){return String(text).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}
+function countWords(text){return text.trim().split(/\s+/).filter(Boolean).length;}
+function analyzeText(){
+let text=document.getElementById("studentText").value.trim();
+let normalized=normalize(text);let words=countWords(text);let total=0;let details=[];
+CRITERIA.forEach(c=>{
+let hits=0;c.keywords.forEach(k=>{if(normalized.includes(normalize(k)))hits++;});
+let ratio=Math.min(1,hits/Math.max(2,Math.ceil(c.keywords.length/2)));
+let points=Math.round(c.points*ratio);total+=points;details.push({name:c.name,points:points,max:c.points,hits:hits});
+});
+if(words<50)total-=20;else if(words<70)total-=10;else if(words<90)total-=5;
+total=Math.max(0,Math.min(100,total));
+let level=total>=80?"good":total>=55?"mid":"bad";
+let comment=total>=80?"Sehr gut! Deine Grafikbeschreibung ist klar strukturiert und enthält wichtige Redemittel.":total>=55?"Gut, aber du kannst noch mehr vergleichen und genauere Daten nennen.":"Du brauchst noch mehr Struktur: Einleitung, Daten, Vergleich und Schluss.";
+let suggestions=[];
+if(!normalized.includes("die grafik zeigt"))suggestions.push("Beginne mit: Die Grafik zeigt ...");
+if(!normalized.includes("prozent") && !text.includes("%"))suggestions.push("Nenne konkrete Zahlen mit Prozent.");
+if(!normalized.includes("vergleich")&&!normalized.includes("höher")&&!normalized.includes("niedriger"))suggestions.push("Vergleiche mindestens zwei Werte.");
+if(!normalized.includes("meiner meinung")&&!normalized.includes("insgesamt"))suggestions.push("Schreibe einen kurzen Schluss oder eine eigene Meinung.");
+if(words<90)suggestions.push("Schreibe mindestens 90 Wörter.");
+document.getElementById("wordCount").innerText=words;document.getElementById("totalScore").innerText=total;document.getElementById("scoreBar").style.width=total+"%";renderCriteria(details);
+let fb=document.getElementById("feedbackBox");fb.className="feedback show "+level;fb.innerHTML="<h3>🤖 Feedback</h3><p>"+comment+"</p><ul>"+suggestions.map(s=>"<li>"+s+"</li>").join("")+"</ul>";
+lastResult={student:currentUser,date:new Date().toLocaleString(),topic:CHART_DATA.title,score:total,words:words,comment:comment,suggestions:suggestions,text:text};
+localStorage.setItem("grafik_result_"+currentUser,JSON.stringify(lastResult));
+}
+function renderCriteria(details){
+let box=document.getElementById("criteriaBox");box.innerHTML="";
+CRITERIA.forEach(c=>{
+let d=details.find(x=>x.name===c.name)||{points:0,max:c.points};
+let percent=Math.round((d.points/c.points)*100);
+box.innerHTML += '<div class="crit"><strong>'+c.name+'</strong>: '+d.points+' / '+c.points+'<div class="progress"><div class="pbar" style="width:'+percent+'%"></div></div></div>';
+});
+}
+function insertTemplate(){
+document.getElementById("studentText").value="Die Grafik zeigt das Thema Freizeit und Bildschirmzeit bei Jugendlichen. Man kann sehen, dass ... Prozent der Jugendlichen ... . Der höchste Wert liegt bei ... . Der niedrigste Wert ist ... . Im Vergleich dazu ... . Auffällig ist, dass ... . Meiner Meinung nach ... . Insgesamt kann man sagen, dass ... .";
+}
+function resetText(){
+document.getElementById("studentText").value="";document.getElementById("feedbackBox").className="feedback";document.getElementById("totalScore").innerText="0";document.getElementById("wordCount").innerText="0";document.getElementById("scoreBar").style.width="0%";renderCriteria([]);
+}
+function makeResultText(){
+if(!lastResult)analyzeText();let r=lastResult;
+return "Grafikbeschreibung PRO\nName: "+r.student+"\nDatum: "+r.date+"\nThema: "+r.topic+"\nPunkte: "+r.score+" / 100\nWörter: "+r.words+"\n\nFeedback:\n"+r.comment+"\n\nTipps:\n"+r.suggestions.join("\n")+"\n\nText:\n"+r.text;
+}
+function downloadResults(){
+let text=makeResultText();let blob=new Blob([text],{type:"text/plain"});let url=URL.createObjectURL(blob);let a=document.createElement("a");a.href=url;a.download="grafikbeschreibung_"+currentUser.replace(/\s+/g,"_")+".txt";a.click();URL.revokeObjectURL(url);
+}
+function copyResults(){
+let text=makeResultText();navigator.clipboard.writeText(text).then(()=>{let fb=document.getElementById("exportFeedback");fb.className="feedback show good";fb.innerText="✅ Ergebnisse wurden kopiert.";}).catch(()=>alert("Kopieren nicht möglich."));
+}
+window.onload=function(){let saved=localStorage.getItem("grafik_user");if(saved)document.getElementById("studentName").value=saved;}
+</script></body></html>
