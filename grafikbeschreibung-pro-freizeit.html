@@ -5,7 +5,29 @@
 <section id="loginBox" class="login"><h2>👩‍🎓 Anmeldung</h2><p>Schreibe deinen Namen, um den Schreibtrainer zu starten.</p><input id="studentName" placeholder="Dein Name"><button onclick="login()">Starten</button></section>
 <div id="app" style="display:none"><header><h1>Grafikbeschreibung PRO</h1><p>Thema: Freizeit und Bildschirmzeit bei Jugendlichen</p></header>
 <main class="container">
-<section class="card"><h2>1. Grafik</h2><p><strong>Freizeit und Bildschirmzeit bei Jugendlichen</strong></p><p class="warning">Angaben in Prozent. Mehrfachnennungen sind möglich.</p><div class="chart" id="chart"></div></section>
+<section class="card">
+<h2>1. Grafik</h2>
+
+<div style="background:#eef2ff;border-radius:18px;padding:18px;margin-bottom:14px">
+<h3 style="margin-bottom:8px;color:#3730a3">
+📊 Freizeit und Bildschirmzeit bei Jugendlichen (2025)
+</h3>
+
+<p style="color:#555">
+Nutzung verschiedener Freizeitaktivitäten bei Jugendlichen zwischen 13 und 18 Jahren.
+</p>
+</div>
+
+<p class="warning">Angaben in Prozent. Mehrfachnennungen sind möglich.</p>
+
+<div class="chart" id="chart"></div>
+
+<div style="margin-top:20px;background:#f9fafb;border-left:6px solid #1cb0f6;padding:16px;border-radius:16px">
+<strong>Quelle:</strong><br>
+Jugendstudie Medien und Freizeit 2025 – Deutsches Institut für Jugendforschung
+</div>
+
+</section>
 <section class="card"><h2>2. Redemittel</h2><div class="help"><strong>Einleitung</strong><br><span class="phrase">Die Grafik zeigt ...</span><span class="phrase">Das Thema der Grafik ist ...</span><span class="phrase">Es geht um ...</span></div><div class="help"><strong>Daten beschreiben</strong><br><span class="phrase">... Prozent der Jugendlichen ...</span><span class="phrase">Der höchste Wert liegt bei ...</span><span class="phrase">Der niedrigste Wert ist ...</span></div><div class="help"><strong>Vergleichen</strong><br><span class="phrase">Im Vergleich dazu ...</span><span class="phrase">... ist höher als ...</span><span class="phrase">Während ..., ...</span></div><div class="help"><strong>Schluss</strong><br><span class="phrase">Auffällig ist, dass ...</span><span class="phrase">Meiner Meinung nach ...</span><span class="phrase">Insgesamt kann man sagen, dass ...</span></div></section>
 <section class="card full"><h2>3. Schreibtrainer</h2><p>Schreibe eine Grafikbeschreibung mit mindestens 90 Wörtern.</p><textarea id="studentText" placeholder="Die Grafik zeigt ..."></textarea><button class="green" onclick="analyzeText()">🤖 Feedback bekommen</button><button class="blue" onclick="insertTemplate()">Textgerüst einfügen</button><button class="red" onclick="resetText()">Zurücksetzen</button><div id="feedbackBox" class="feedback"></div></section>
 <section class="card"><h2>4. Automatische Punktzahl</h2><div class="scorebox"><h3>Gesamtpunktzahl: <span id="totalScore">0</span> / 100</h3><div class="progress"><div class="pbar" id="scoreBar"></div></div><p><strong>Wörter:</strong> <span id="wordCount">0</span></p></div><div id="criteriaBox"></div></section>
