@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B1 Grammatik – Übungen mit Rückmeldung</title>
+<style>
+:root {
+  --bg:#f5f7fb; --text:#1f2937; --muted:#6b7280; --primary:#2563eb;
+  --primary-dark:#1e40af; --card:#fff; --border:#e5e7eb; --green:#dcfce7;
+  --red:#fee2e2; --yellow:#fef3c7; --blue:#dbeafe;
+}
+* { box-sizing:border-box; scroll-behavior:smooth; }
+body { margin:0; font-family:Arial,Helvetica,sans-serif; background:var(--bg); color:var(--text); line-height:1.55; }
+header { background:linear-gradient(135deg,#1e3a8a,#2563eb,#60a5fa); color:white; text-align:center; padding:58px 20px 70px; }
+header h1 { margin:0; font-size:clamp(32px,6vw,56px); }
+header p { font-size:19px; max-width:800px; margin:12px auto 0; opacity:.95; }
+nav { max-width:1200px; margin:-35px auto 28px; padding:0 20px; position:sticky; top:10px; z-index:5; }
+.nav-box { background:rgba(255,255,255,.96); border:1px solid var(--border); border-radius:22px; box-shadow:0 12px 28px rgba(0,0,0,.12); padding:14px; display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+.nav-box a { text-decoration:none; color:var(--primary-dark); font-weight:bold; background:#eff6ff; border:1px solid #bfdbfe; padding:9px 13px; border-radius:999px; font-size:14px; }
+.nav-box a:hover { background:var(--primary); color:white; }
+main { max-width:1200px; margin:0 auto; padding:0 20px 50px; }
+.intro,.card { background:var(--card); border-radius:24px; padding:26px; box-shadow:0 8px 22px rgba(0,0,0,.07); margin-bottom:24px; }
+.intro { display:grid; grid-template-columns:1.5fr 1fr; gap:22px; align-items:center; }
+.quick { background:linear-gradient(135deg,#eff6ff,#fff); border:1px solid #bfdbfe; border-radius:20px; padding:18px; }
+.card { border-top:7px solid var(--primary); }
+.badge { display:inline-block; background:var(--blue); color:var(--primary-dark); padding:6px 12px; border-radius:999px; font-size:13px; font-weight:bold; margin-bottom:8px; }
+h2 { color:var(--primary-dark); font-size:30px; margin:0 0 14px; }
+h3 { color:var(--primary-dark); }
+.grammar { background:#f8fafc; border:1px solid var(--border); border-radius:18px; padding:16px; margin-bottom:18px; }
+.rule { background:white; border-left:6px solid var(--primary); border-radius:14px; padding:13px 15px; margin:10px 0; }
+.quiz { background:#fbfdff; border:1px solid var(--border); border-radius:18px; padding:16px; }
+.q { background:white; border:1px solid var(--border); border-radius:16px; padding:15px; margin:12px 0; }
+.q.correct { border-color:#22c55e; background:#f0fdf4; }
+.q.wrong { border-color:#ef4444; background:#fef2f2; }
+.options { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:8px; }
+.option { display:block; border:1px solid var(--border); border-radius:12px; background:#f8fafc; padding:10px; cursor:pointer; }
+.option:hover { background:#eff6ff; }
+input[type=text] { width:100%; padding:11px; border:1px solid #cbd5e1; border-radius:12px; font-size:15px; background:#f8fafc; }
+.feedback { margin-top:8px; font-weight:bold; min-height:24px; }
+.feedback.ok { color:#15803d; }
+.feedback.no { color:#b91c1c; }
+button { background:var(--primary); color:white; border:none; padding:12px 18px; border-radius:12px; font-weight:bold; font-size:15px; cursor:pointer; margin:5px; }
+button:hover { background:var(--primary-dark); }
+button.secondary { background:#64748b; }
+.quiz-actions { display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-top:16px; }
+.score { font-weight:bold; color:var(--primary-dark); font-size:17px; }
+.global-buttons { text-align:center; margin:25px 0; }
+footer { text-align:center; color:var(--muted); padding:30px; font-size:14px; }
+@media(max-width:800px) { .intro { grid-template-columns:1fr; } nav { position:static; margin-top:-28px; } }
+@media print { nav,.global-buttons,.quiz-actions { display:none; } body { background:white; } .intro,.card { box-shadow:none; border:1px solid #ddd; break-inside:avoid; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>B1 Grammatik</h1>
+  <p>Interaktive Übungen mit sofortiger Rückmeldung: keine offenen Antworten, sondern prüfbare Aufgaben.</p>
+</header>
+
+<nav><div class="nav-box"><a href="#zeiten">Zeiten</a><a href="#nebensaetze">Nebensätze</a><a href="#konnektoren">Konnektoren</a><a href="#relativsaetze">Relativsätze</a><a href="#adjektive">Adjektivdeklination</a><a href="#praepositionen">Präpositionen</a><a href="#passiv">Passiv</a><a href="#konjunktiv">Konjunktiv II</a></div></nav>
+
+<main>
+<section class="intro">
+  <div>
+    <span class="badge">B1 · Selbstkontrolle</span>
+    <h2>Grammatik üben und sofort prüfen</h2>
+    <p>Jedes Thema enthält kurze Regeln und geschlossene Übungen. Klicke auf <strong>Prüfen</strong>, um sofort Feedback und Punkte zu bekommen.</p>
+  </div>
+  <div class="quick">
+    <h3>Farben</h3>
+    <p>✅ Grün = richtig<br>❌ Rot = falsch<br>💡 Die richtige Antwort wird angezeigt.</p>
+  </div>
+</section>
+
+<div class="global-buttons">
+  <button onclick="checkAll()">Alle prüfen</button>
+  <button class="secondary" onclick="resetAll()">Alles zurücksetzen</button>
+  <button onclick="window.print()">Drucken / PDF</button>
+  <div class="score" id="total-score"></div>
+</div>
+
+
+    <section class="card" id="zeiten">
+      <div class="section-top">
+        <span class="badge">B1 · automatische Rückmeldung</span>
+        <h2>Zeiten</h2>
+      </div>
+      <div class="grammar">
+        <div class="rule"><strong>Perfekt:</strong> haben/sein + Partizip II. Beispiel: Ich habe gelernt. / Ich bin gefahren.</div>
+        <div class="rule"><strong>Präteritum:</strong> oft bei sein, haben und Modalverben. Beispiel: Ich war müde. / Ich musste lernen.</div>
+        </div>
+      <div class="quiz" data-topic="zeiten">
+        <h3>Übungen mit direkter Rückmeldung</h3>
+        
+    <div class="q" data-answer="lerne" data-type="fill" data-name="zeiten_0">
+      <p><strong>1.</strong> Ich ______ Deutsch. (lernen, Präsens)</p>
+      <input type="text" data-name="zeiten_0" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="gehen" data-type="fill" data-name="zeiten_1">
+      <p><strong>2.</strong> Wir ______ nach Hause. (gehen, Präsens)</p>
+      <input type="text" data-name="zeiten_1" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="habe" data-type="mc" data-name="zeiten_2">
+      <p><strong>3.</strong> Wähle die richtige Perfektform: Ich ___ Pizza gegessen.</p>
+      <div class="options"><label class="option"><input type="radio" name="zeiten_2" value="habe"> habe</label><label class="option"><input type="radio" name="zeiten_2" value="bin"> bin</label><label class="option"><input type="radio" name="zeiten_2" value="war"> war</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="ist" data-type="mc" data-name="zeiten_3">
+      <p><strong>4.</strong> Wähle die richtige Perfektform: Sie ___ nach Berlin gefahren.</p>
+      <div class="options"><label class="option"><input type="radio" name="zeiten_3" value="hat"> hat</label><label class="option"><input type="radio" name="zeiten_3" value="ist"> ist</label><label class="option"><input type="radio" name="zeiten_3" value="war"> war</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="habe" data-type="fill" data-name="zeiten_4">
+      <p><strong>5.</strong> Gestern ______ ich viel gelernt.</p>
+      <input type="text" data-name="zeiten_4" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="war" data-type="mc" data-name="zeiten_5">
+      <p><strong>6.</strong> Präteritum von „sein“: Ich ___ müde.</p>
+      <div class="options"><label class="option"><input type="radio" name="zeiten_5" value="bin"> bin</label><label class="option"><input type="radio" name="zeiten_5" value="war"> war</label><label class="option"><input type="radio" name="zeiten_5" value="hatte"> hatte</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="hatten" data-type="mc" data-name="zeiten_6">
+      <p><strong>7.</strong> Präteritum von „haben“: Wir ___ keine Zeit.</p>
+      <div class="options"><label class="option"><input type="radio" name="zeiten_6" value="haben"> haben</label><label class="option"><input type="radio" name="zeiten_6" value="hatten"> hatten</label><label class="option"><input type="radio" name="zeiten_6" value="waren"> waren</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="musste" data-type="mc" data-name="zeiten_7">
+      <p><strong>8.</strong> Präteritum von „müssen“: Er ___ arbeiten.</p>
+      <div class="options"><label class="option"><input type="radio" name="zeiten_7" value="musste"> musste</label><label class="option"><input type="radio" name="zeiten_7" value="muss"> muss</label><label class="option"><input type="radio" name="zeiten_7" value="gemusst"> gemusst</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="gekauft" data-type="fill" data-name="zeiten_8">
+      <p><strong>9.</strong> Perfekt: Maria kauft ein Buch. → Maria hat ein Buch ______.</p>
+      <input type="text" data-name="zeiten_8" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="Wir haben einen Film gesehen." data-type="mc" data-name="zeiten_9">
+      <p><strong>10.</strong> Welche Form ist korrekt?</p>
+      <div class="options"><label class="option"><input type="radio" name="zeiten_9" value="Wir haben einen Film gesehen."> Wir haben einen Film gesehen.</label><label class="option"><input type="radio" name="zeiten_9" value="Wir sind einen Film gesehen."> Wir sind einen Film gesehen.</label><label class="option"><input type="radio" name="zeiten_9" value="Wir hatten einen Film gesehen."> Wir hatten einen Film gesehen.</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+        <div class="quiz-actions">
+          <button onclick="checkTopic('zeiten')">Prüfen</button>
+          <button class="secondary" onclick="resetTopic('zeiten')">Zurücksetzen</button>
+          <span class="score" id="score-zeiten"></span>
+        </div>
+      </div>
+    </section>
+    
+    <section class="card" id="nebensaetze">
+      <div class="section-top">
+        <span class="badge">B1 · automatische Rückmeldung</span>
+        <h2>Nebensätze</h2>
+      </div>
+      <div class="grammar">
+        <div class="rule">Im Nebensatz steht das konjugierte Verb am Ende: Ich lerne, weil ich Deutsch <strong>mag</strong>.</div>
+        </div>
+      <div class="quiz" data-topic="nebensaetze">
+        <h3>Übungen mit direkter Rückmeldung</h3>
+        
+    <div class="q" data-answer="Ich lerne, weil ich Deutsch mag." data-type="mc" data-name="nebensaetze_0">
+      <p><strong>1.</strong> Welche Satzstellung ist richtig?</p>
+      <div class="options"><label class="option"><input type="radio" name="nebensaetze_0" value="Ich lerne, weil ich Deutsch mag."> Ich lerne, weil ich Deutsch mag.</label><label class="option"><input type="radio" name="nebensaetze_0" value="Ich lerne, weil mag ich Deutsch."> Ich lerne, weil mag ich Deutsch.</label><label class="option"><input type="radio" name="nebensaetze_0" value="Ich lerne, weil ich mag Deutsch."> Ich lerne, weil ich mag Deutsch.</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="schlafe" data-type="fill" data-name="nebensaetze_1">
+      <p><strong>2.</strong> Ich bin müde, weil ich wenig ______. (schlafen)</p>
+      <input type="text" data-name="nebensaetze_1" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="Ich glaube, dass Deutsch wichtig ist." data-type="mc" data-name="nebensaetze_2">
+      <p><strong>3.</strong> Wähle den Nebensatz mit „dass“.</p>
+      <div class="options"><label class="option"><input type="radio" name="nebensaetze_2" value="Ich glaube, dass Deutsch wichtig ist."> Ich glaube, dass Deutsch wichtig ist.</label><label class="option"><input type="radio" name="nebensaetze_2" value="Ich glaube, Deutsch ist dass wichtig."> Ich glaube, Deutsch ist dass wichtig.</label><label class="option"><input type="radio" name="nebensaetze_2" value="Dass ich glaube, Deutsch wichtig ist."> Dass ich glaube, Deutsch wichtig ist.</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="habe" data-type="fill" data-name="nebensaetze_3">
+      <p><strong>4.</strong> Wenn ich Zeit ______, lerne ich Deutsch. (haben)</p>
+      <input type="text" data-name="nebensaetze_3" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="Gegensatz" data-type="mc" data-name="nebensaetze_4">
+      <p><strong>5.</strong> Welche Bedeutung hat „obwohl“?</p>
+      <div class="options"><label class="option"><input type="radio" name="nebensaetze_4" value="Gegensatz"> Gegensatz</label><label class="option"><input type="radio" name="nebensaetze_4" value="Grund"> Grund</label><label class="option"><input type="radio" name="nebensaetze_4" value="Zeit"> Zeit</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="Grund" data-type="mc" data-name="nebensaetze_5">
+      <p><strong>6.</strong> Welche Bedeutung hat „weil“?</p>
+      <div class="options"><label class="option"><input type="radio" name="nebensaetze_5" value="Grund"> Grund</label><label class="option"><input type="radio" name="nebensaetze_5" value="Folge"> Folge</label><label class="option"><input type="radio" name="nebensaetze_5" value="Gegensatz"> Gegensatz</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="ist" data-type="fill" data-name="nebensaetze_6">
+      <p><strong>7.</strong> Obwohl es schwierig ______, mache ich weiter. (sein)</p>
+      <input type="text" data-name="nebensaetze_6" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="am Ende" data-type="mc" data-name="nebensaetze_7">
+      <p><strong>8.</strong> Wo steht das Verb im Nebensatz?</p>
+      <div class="options"><label class="option"><input type="radio" name="nebensaetze_7" value="am Ende"> am Ende</label><label class="option"><input type="radio" name="nebensaetze_7" value="immer am Anfang"> immer am Anfang</label><label class="option"><input type="radio" name="nebensaetze_7" value="auf Position 2"> auf Position 2</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="ist" data-type="fill" data-name="nebensaetze_8">
+      <p><strong>9.</strong> Ich denke, dass die Prüfung wichtig ______. (sein)</p>
+      <input type="text" data-name="nebensaetze_8" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="Wenn es regnet, bleibe ich zu Hause." data-type="mc" data-name="nebensaetze_9">
+      <p><strong>10.</strong> Welcher Satz ist korrekt?</p>
+      <div class="options"><label class="option"><input type="radio" name="nebensaetze_9" value="Wenn es regnet, bleibe ich zu Hause."> Wenn es regnet, bleibe ich zu Hause.</label><label class="option"><input type="radio" name="nebensaetze_9" value="Wenn regnet es, ich bleibe zu Hause."> Wenn regnet es, ich bleibe zu Hause.</label><label class="option"><input type="radio" name="nebensaetze_9" value="Wenn es regnet, ich bleibe zu Hause."> Wenn es regnet, ich bleibe zu Hause.</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+        <div class="quiz-actions">
+          <button onclick="checkTopic('nebensaetze')">Prüfen</button>
+          <button class="secondary" onclick="resetTopic('nebensaetze')">Zurücksetzen</button>
+          <span class="score" id="score-nebensaetze"></span>
+        </div>
+      </div>
+    </section>
+    
+    <section class="card" id="konnektoren">
+      <div class="section-top">
+        <span class="badge">B1 · automatische Rückmeldung</span>
+        <h2>Konnektoren</h2>
+      </div>
+      <div class="grammar">
+        <div class="rule"><strong>und, aber, denn</strong>: normale Satzstellung. <strong>deshalb, trotzdem</strong>: Verb direkt danach.</div>
+        </div>
+      <div class="quiz" data-topic="konnektoren">
+        <h3>Übungen mit direkter Rückmeldung</h3>
+        
+    <div class="q" data-answer="Deshalb" data-type="mc" data-name="konnektoren_0">
+      <p><strong>1.</strong> Ich habe eine Prüfung. ___ lerne ich viel.</p>
+      <div class="options"><label class="option"><input type="radio" name="konnektoren_0" value="Deshalb"> Deshalb</label><label class="option"><input type="radio" name="konnektoren_0" value="Denn"> Denn</label><label class="option"><input type="radio" name="konnektoren_0" value="Weil"> Weil</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="Trotzdem" data-type="mc" data-name="konnektoren_1">
+      <p><strong>2.</strong> Ich bin müde. ___ lerne ich weiter.</p>
+      <div class="options"><label class="option"><input type="radio" name="konnektoren_1" value="Trotzdem"> Trotzdem</label><label class="option"><input type="radio" name="konnektoren_1" value="Denn"> Denn</label><label class="option"><input type="radio" name="konnektoren_1" value="Weil"> Weil</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="denn" data-type="mc" data-name="konnektoren_2">
+      <p><strong>3.</strong> Ich lerne Deutsch, ___ ich möchte die Prüfung bestehen.</p>
+      <div class="options"><label class="option"><input type="radio" name="konnektoren_2" value="denn"> denn</label><label class="option"><input type="radio" name="konnektoren_2" value="deshalb"> deshalb</label><label class="option"><input type="radio" name="konnektoren_2" value="trotzdem"> trotzdem</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="deshalb" data-type="fill" data-name="konnektoren_3">
+      <p><strong>4.</strong> Ich habe Hunger, ______ esse ich ein Brot.</p>
+      <input type="text" data-name="konnektoren_3" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="das Verb" data-type="mc" data-name="konnektoren_4">
+      <p><strong>5.</strong> Nach „deshalb“ kommt ...</p>
+      <div class="options"><label class="option"><input type="radio" name="konnektoren_4" value="das Verb"> das Verb</label><label class="option"><input type="radio" name="konnektoren_4" value="das Subjekt"> das Subjekt</label><label class="option"><input type="radio" name="konnektoren_4" value="ein Nebensatz"> ein Nebensatz</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="aber" data-type="mc" data-name="konnektoren_5">
+      <p><strong>6.</strong> Welche Verbindung zeigt einen Gegensatz?</p>
+      <div class="options"><label class="option"><input type="radio" name="konnektoren_5" value="aber"> aber</label><label class="option"><input type="radio" name="konnektoren_5" value="und"> und</label><label class="option"><input type="radio" name="konnektoren_5" value="denn"> denn</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="denn" data-type="mc" data-name="konnektoren_6">
+      <p><strong>7.</strong> Welche Verbindung zeigt einen Grund?</p>
+      <div class="options"><label class="option"><input type="radio" name="konnektoren_6" value="denn"> denn</label><label class="option"><input type="radio" name="konnektoren_6" value="und"> und</label><label class="option"><input type="radio" name="konnektoren_6" value="trotzdem"> trotzdem</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="trotzdem" data-type="fill" data-name="konnektoren_7">
+      <p><strong>8.</strong> Es regnet, ______ gehe ich spazieren.</p>
+      <input type="text" data-name="konnektoren_7" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="Deshalb lerne ich." data-type="mc" data-name="konnektoren_8">
+      <p><strong>9.</strong> Welche Satzstellung ist korrekt?</p>
+      <div class="options"><label class="option"><input type="radio" name="konnektoren_8" value="Deshalb lerne ich."> Deshalb lerne ich.</label><label class="option"><input type="radio" name="konnektoren_8" value="Deshalb ich lerne."> Deshalb ich lerne.</label><label class="option"><input type="radio" name="konnektoren_8" value="Deshalb ich Deutsch lerne."> Deshalb ich Deutsch lerne.</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="Ich lerne, denn ich habe einen Test." data-type="mc" data-name="konnektoren_9">
+      <p><strong>10.</strong> Welche Satzstellung ist korrekt?</p>
+      <div class="options"><label class="option"><input type="radio" name="konnektoren_9" value="Ich lerne, denn ich habe einen Test."> Ich lerne, denn ich habe einen Test.</label><label class="option"><input type="radio" name="konnektoren_9" value="Ich lerne, denn habe ich einen Test."> Ich lerne, denn habe ich einen Test.</label><label class="option"><input type="radio" name="konnektoren_9" value="Ich lerne, denn ich einen Test habe."> Ich lerne, denn ich einen Test habe.</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+        <div class="quiz-actions">
+          <button onclick="checkTopic('konnektoren')">Prüfen</button>
+          <button class="secondary" onclick="resetTopic('konnektoren')">Zurücksetzen</button>
+          <span class="score" id="score-konnektoren"></span>
+        </div>
+      </div>
+    </section>
+    
+    <section class="card" id="relativsaetze">
+      <div class="section-top">
+        <span class="badge">B1 · automatische Rückmeldung</span>
+        <h2>Relativsätze</h2>
+      </div>
+      <div class="grammar">
+        <div class="rule">Relativsätze geben mehr Informationen. Das Verb steht am Ende: Das ist das Buch, das ich lese.</div>
+        </div>
+      <div class="quiz" data-topic="relativsaetze">
+        <h3>Übungen mit direkter Rückmeldung</h3>
+        
+    <div class="q" data-answer="der" data-type="mc" data-name="relativsaetze_0">
+      <p><strong>1.</strong> Das ist der Mann, ___ hier wohnt.</p>
+      <div class="options"><label class="option"><input type="radio" name="relativsaetze_0" value="der"> der</label><label class="option"><input type="radio" name="relativsaetze_0" value="die"> die</label><label class="option"><input type="radio" name="relativsaetze_0" value="das"> das</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="die" data-type="mc" data-name="relativsaetze_1">
+      <p><strong>2.</strong> Das ist die Frau, ___ Deutsch spricht.</p>
+      <div class="options"><label class="option"><input type="radio" name="relativsaetze_1" value="der"> der</label><label class="option"><input type="radio" name="relativsaetze_1" value="die"> die</label><label class="option"><input type="radio" name="relativsaetze_1" value="das"> das</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="das" data-type="mc" data-name="relativsaetze_2">
+      <p><strong>3.</strong> Das ist das Buch, ___ ich lese.</p>
+      <div class="options"><label class="option"><input type="radio" name="relativsaetze_2" value="der"> der</label><label class="option"><input type="radio" name="relativsaetze_2" value="die"> die</label><label class="option"><input type="radio" name="relativsaetze_2" value="das"> das</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="die" data-type="mc" data-name="relativsaetze_3">
+      <p><strong>4.</strong> Das sind die Freunde, ___ nett sind.</p>
+      <div class="options"><label class="option"><input type="radio" name="relativsaetze_3" value="der"> der</label><label class="option"><input type="radio" name="relativsaetze_3" value="die"> die</label><label class="option"><input type="radio" name="relativsaetze_3" value="das"> das</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="am Ende" data-type="mc" data-name="relativsaetze_4">
+      <p><strong>5.</strong> Wo steht das Verb im Relativsatz?</p>
+      <div class="options"><label class="option"><input type="radio" name="relativsaetze_4" value="am Ende"> am Ende</label><label class="option"><input type="radio" name="relativsaetze_4" value="auf Position 1"> auf Position 1</label><label class="option"><input type="radio" name="relativsaetze_4" value="immer nach dem Nomen"> immer nach dem Nomen</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="das" data-type="fill" data-name="relativsaetze_5">
+      <p><strong>6.</strong> Das ist ein Thema, ______ wichtig ist.</p>
+      <input type="text" data-name="relativsaetze_5" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="die" data-type="fill" data-name="relativsaetze_6">
+      <p><strong>7.</strong> Das ist eine Lehrerin, ______ uns hilft.</p>
+      <input type="text" data-name="relativsaetze_6" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="der" data-type="fill" data-name="relativsaetze_7">
+      <p><strong>8.</strong> Das ist ein Schüler, ______ gut Deutsch spricht.</p>
+      <input type="text" data-name="relativsaetze_7" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="die" data-type="mc" data-name="relativsaetze_8">
+      <p><strong>9.</strong> Welche Form passt zu Plural?</p>
+      <div class="options"><label class="option"><input type="radio" name="relativsaetze_8" value="die"> die</label><label class="option"><input type="radio" name="relativsaetze_8" value="der"> der</label><label class="option"><input type="radio" name="relativsaetze_8" value="das"> das</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="Das ist das Buch, das ich lese." data-type="mc" data-name="relativsaetze_9">
+      <p><strong>10.</strong> Welcher Satz ist korrekt?</p>
+      <div class="options"><label class="option"><input type="radio" name="relativsaetze_9" value="Das ist das Buch, das ich lese."> Das ist das Buch, das ich lese.</label><label class="option"><input type="radio" name="relativsaetze_9" value="Das ist das Buch, ich das lese."> Das ist das Buch, ich das lese.</label><label class="option"><input type="radio" name="relativsaetze_9" value="Das ist das Buch, das lese ich."> Das ist das Buch, das lese ich.</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+        <div class="quiz-actions">
+          <button onclick="checkTopic('relativsaetze')">Prüfen</button>
+          <button class="secondary" onclick="resetTopic('relativsaetze')">Zurücksetzen</button>
+          <span class="score" id="score-relativsaetze"></span>
+        </div>
+      </div>
+    </section>
+    
+    <section class="card" id="adjektive">
+      <div class="section-top">
+        <span class="badge">B1 · automatische Rückmeldung</span>
+        <h2>Adjektivdeklination</h2>
+      </div>
+      <div class="grammar">
+        <div class="rule">Adjektive vor Nomen bekommen Endungen: ein guter Schüler, eine gute Idee, das gute Beispiel.</div>
+        </div>
+      <div class="quiz" data-topic="adjektive">
+        <h3>Übungen mit direkter Rückmeldung</h3>
+        
+    <div class="q" data-answer="er" data-type="fill" data-name="adjektive_0">
+      <p><strong>1.</strong> ein gut___ Schüler</p>
+      <input type="text" data-name="adjektive_0" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="e" data-type="fill" data-name="adjektive_1">
+      <p><strong>2.</strong> die schön___ Stadt</p>
+      <input type="text" data-name="adjektive_1" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="e" data-type="fill" data-name="adjektive_2">
+      <p><strong>3.</strong> eine interessant___ Nachricht</p>
+      <input type="text" data-name="adjektive_2" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="e" data-type="fill" data-name="adjektive_3">
+      <p><strong>4.</strong> das klein___ Kind</p>
+      <input type="text" data-name="adjektive_3" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="en" data-type="fill" data-name="adjektive_4">
+      <p><strong>5.</strong> die nett___ Lehrer (Plural mit bestimmtem Artikel)</p>
+      <input type="text" data-name="adjektive_4" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="ein neuer Film" data-type="mc" data-name="adjektive_5">
+      <p><strong>6.</strong> Welche Form ist korrekt?</p>
+      <div class="options"><label class="option"><input type="radio" name="adjektive_5" value="ein neuer Film"> ein neuer Film</label><label class="option"><input type="radio" name="adjektive_5" value="ein neue Film"> ein neue Film</label><label class="option"><input type="radio" name="adjektive_5" value="ein neues Film"> ein neues Film</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="eine wichtige Frage" data-type="mc" data-name="adjektive_6">
+      <p><strong>7.</strong> Welche Form ist korrekt?</p>
+      <div class="options"><label class="option"><input type="radio" name="adjektive_6" value="eine wichtige Frage"> eine wichtige Frage</label><label class="option"><input type="radio" name="adjektive_6" value="eine wichtiger Frage"> eine wichtiger Frage</label><label class="option"><input type="radio" name="adjektive_6" value="eine wichtiges Frage"> eine wichtiges Frage</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="e" data-type="fill" data-name="adjektive_7">
+      <p><strong>8.</strong> der alt___ Mann</p>
+      <input type="text" data-name="adjektive_7" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="en" data-type="fill" data-name="adjektive_8">
+      <p><strong>9.</strong> den alt___ Mann</p>
+      <input type="text" data-name="adjektive_8" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="das große Problem" data-type="mc" data-name="adjektive_9">
+      <p><strong>10.</strong> Welche Form ist korrekt?</p>
+      <div class="options"><label class="option"><input type="radio" name="adjektive_9" value="das große Problem"> das große Problem</label><label class="option"><input type="radio" name="adjektive_9" value="das großer Problem"> das großer Problem</label><label class="option"><input type="radio" name="adjektive_9" value="das großen Problem"> das großen Problem</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+        <div class="quiz-actions">
+          <button onclick="checkTopic('adjektive')">Prüfen</button>
+          <button class="secondary" onclick="resetTopic('adjektive')">Zurücksetzen</button>
+          <span class="score" id="score-adjektive"></span>
+        </div>
+      </div>
+    </section>
+    
+    <section class="card" id="praepositionen">
+      <div class="section-top">
+        <span class="badge">B1 · automatische Rückmeldung</span>
+        <h2>Präpositionen</h2>
+      </div>
+      <div class="grammar">
+        <div class="rule">Akkusativ: durch, für, gegen, ohne, um. Dativ: aus, bei, mit, nach, seit, von, zu.</div>
+        <div class="rule">Wechselpräpositionen: Wo? + Dativ / Wohin? + Akkusativ.</div>
+        </div>
+      <div class="quiz" data-topic="praepositionen">
+        <h3>Übungen mit direkter Rückmeldung</h3>
+        
+    <div class="q" data-answer="in die" data-type="mc" data-name="praepositionen_0">
+      <p><strong>1.</strong> Ich gehe ___ Schule.</p>
+      <div class="options"><label class="option"><input type="radio" name="praepositionen_0" value="in die"> in die</label><label class="option"><input type="radio" name="praepositionen_0" value="in der"> in der</label><label class="option"><input type="radio" name="praepositionen_0" value="nach"> nach</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="in der" data-type="mc" data-name="praepositionen_1">
+      <p><strong>2.</strong> Ich bin ___ Schule.</p>
+      <div class="options"><label class="option"><input type="radio" name="praepositionen_1" value="in die"> in die</label><label class="option"><input type="radio" name="praepositionen_1" value="in der"> in der</label><label class="option"><input type="radio" name="praepositionen_1" value="nach"> nach</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="für" data-type="mc" data-name="praepositionen_2">
+      <p><strong>3.</strong> Das Geschenk ist ___ meine Mutter.</p>
+      <div class="options"><label class="option"><input type="radio" name="praepositionen_2" value="für"> für</label><label class="option"><input type="radio" name="praepositionen_2" value="mit"> mit</label><label class="option"><input type="radio" name="praepositionen_2" value="bei"> bei</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="nach" data-type="mc" data-name="praepositionen_3">
+      <p><strong>4.</strong> Ich fahre ___ Deutschland.</p>
+      <div class="options"><label class="option"><input type="radio" name="praepositionen_3" value="nach"> nach</label><label class="option"><input type="radio" name="praepositionen_3" value="in"> in</label><label class="option"><input type="radio" name="praepositionen_3" value="zu"> zu</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="aus" data-type="mc" data-name="praepositionen_4">
+      <p><strong>5.</strong> Ich komme ___ Santiago.</p>
+      <div class="options"><label class="option"><input type="radio" name="praepositionen_4" value="aus"> aus</label><label class="option"><input type="radio" name="praepositionen_4" value="nach"> nach</label><label class="option"><input type="radio" name="praepositionen_4" value="für"> für</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="mit" data-type="mc" data-name="praepositionen_5">
+      <p><strong>6.</strong> Ich lerne ___ Freunden.</p>
+      <div class="options"><label class="option"><input type="radio" name="praepositionen_5" value="mit"> mit</label><label class="option"><input type="radio" name="praepositionen_5" value="für"> für</label><label class="option"><input type="radio" name="praepositionen_5" value="durch"> durch</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="auf" data-type="mc" data-name="praepositionen_6">
+      <p><strong>7.</strong> Das Buch liegt ___ dem Tisch.</p>
+      <div class="options"><label class="option"><input type="radio" name="praepositionen_6" value="auf"> auf</label><label class="option"><input type="radio" name="praepositionen_6" value="in"> in</label><label class="option"><input type="radio" name="praepositionen_6" value="an"> an</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="auf" data-type="mc" data-name="praepositionen_7">
+      <p><strong>8.</strong> Ich stelle das Glas ___ den Tisch.</p>
+      <div class="options"><label class="option"><input type="radio" name="praepositionen_7" value="auf"> auf</label><label class="option"><input type="radio" name="praepositionen_7" value="auf dem"> auf dem</label><label class="option"><input type="radio" name="praepositionen_7" value="bei"> bei</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="für" data-type="mc" data-name="praepositionen_8">
+      <p><strong>9.</strong> Welche Präposition braucht Akkusativ?</p>
+      <div class="options"><label class="option"><input type="radio" name="praepositionen_8" value="für"> für</label><label class="option"><input type="radio" name="praepositionen_8" value="mit"> mit</label><label class="option"><input type="radio" name="praepositionen_8" value="nach"> nach</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="mit" data-type="mc" data-name="praepositionen_9">
+      <p><strong>10.</strong> Welche Präposition braucht Dativ?</p>
+      <div class="options"><label class="option"><input type="radio" name="praepositionen_9" value="mit"> mit</label><label class="option"><input type="radio" name="praepositionen_9" value="für"> für</label><label class="option"><input type="radio" name="praepositionen_9" value="gegen"> gegen</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+        <div class="quiz-actions">
+          <button onclick="checkTopic('praepositionen')">Prüfen</button>
+          <button class="secondary" onclick="resetTopic('praepositionen')">Zurücksetzen</button>
+          <span class="score" id="score-praepositionen"></span>
+        </div>
+      </div>
+    </section>
+    
+    <section class="card" id="passiv">
+      <div class="section-top">
+        <span class="badge">B1 · automatische Rückmeldung</span>
+        <h2>Passiv</h2>
+      </div>
+      <div class="grammar">
+        <div class="rule">Passiv: werden + Partizip II. Beispiel: Die Grammatik wird erklärt.</div>
+        </div>
+      <div class="quiz" data-topic="passiv">
+        <h3>Übungen mit direkter Rückmeldung</h3>
+        
+    <div class="q" data-answer="wird" data-type="mc" data-name="passiv_0">
+      <p><strong>1.</strong> Man baut ein Haus. → Ein Haus ___ gebaut.</p>
+      <div class="options"><label class="option"><input type="radio" name="passiv_0" value="wird"> wird</label><label class="option"><input type="radio" name="passiv_0" value="hat"> hat</label><label class="option"><input type="radio" name="passiv_0" value="ist"> ist</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="geschrieben" data-type="fill" data-name="passiv_1">
+      <p><strong>2.</strong> Der Text wird ______. (schreiben)</p>
+      <input type="text" data-name="passiv_1" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="wird" data-type="mc" data-name="passiv_2">
+      <p><strong>3.</strong> Die Grammatik ___ erklärt.</p>
+      <div class="options"><label class="option"><input type="radio" name="passiv_2" value="wird"> wird</label><label class="option"><input type="radio" name="passiv_2" value="hat"> hat</label><label class="option"><input type="radio" name="passiv_2" value="macht"> macht</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="gekocht" data-type="fill" data-name="passiv_3">
+      <p><strong>4.</strong> Das Essen wird ______. (kochen)</p>
+      <input type="text" data-name="passiv_3" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="geöffnet" data-type="fill" data-name="passiv_4">
+      <p><strong>5.</strong> Die Tür wird ______. (öffnen)</p>
+      <input type="text" data-name="passiv_4" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="die Handlung wichtig ist" data-type="mc" data-name="passiv_5">
+      <p><strong>6.</strong> Passiv benutzt man, wenn ...</p>
+      <div class="options"><label class="option"><input type="radio" name="passiv_5" value="die Handlung wichtig ist"> die Handlung wichtig ist</label><label class="option"><input type="radio" name="passiv_5" value="die Person immer wichtig ist"> die Person immer wichtig ist</label><label class="option"><input type="radio" name="passiv_5" value="man nur über Zukunft spricht"> man nur über Zukunft spricht</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="geschrieben" data-type="fill" data-name="passiv_6">
+      <p><strong>7.</strong> Ein Brief wird ______. (schreiben)</p>
+      <input type="text" data-name="passiv_6" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="gelesen" data-type="fill" data-name="passiv_7">
+      <p><strong>8.</strong> Das Buch wird ______. (lesen)</p>
+      <input type="text" data-name="passiv_7" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="Die Aufgabe wird gemacht." data-type="mc" data-name="passiv_8">
+      <p><strong>9.</strong> Welche Form ist korrekt?</p>
+      <div class="options"><label class="option"><input type="radio" name="passiv_8" value="Die Aufgabe wird gemacht."> Die Aufgabe wird gemacht.</label><label class="option"><input type="radio" name="passiv_8" value="Die Aufgabe hat gemacht."> Die Aufgabe hat gemacht.</label><label class="option"><input type="radio" name="passiv_8" value="Die Aufgabe ist macht."> Die Aufgabe ist macht.</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="werden + Partizip II" data-type="mc" data-name="passiv_9">
+      <p><strong>10.</strong> Was braucht das Passiv?</p>
+      <div class="options"><label class="option"><input type="radio" name="passiv_9" value="werden + Partizip II"> werden + Partizip II</label><label class="option"><input type="radio" name="passiv_9" value="haben + Infinitiv"> haben + Infinitiv</label><label class="option"><input type="radio" name="passiv_9" value="sein + Präsens"> sein + Präsens</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+        <div class="quiz-actions">
+          <button onclick="checkTopic('passiv')">Prüfen</button>
+          <button class="secondary" onclick="resetTopic('passiv')">Zurücksetzen</button>
+          <span class="score" id="score-passiv"></span>
+        </div>
+      </div>
+    </section>
+    
+    <section class="card" id="konjunktiv">
+      <div class="section-top">
+        <span class="badge">B1 · automatische Rückmeldung</span>
+        <h2>Konjunktiv II</h2>
+      </div>
+      <div class="grammar">
+        <div class="rule">Konjunktiv II für Wünsche, höfliche Bitten und irreale Situationen: Ich hätte gern..., Ich wäre gern..., Ich würde gern...</div>
+        </div>
+      <div class="quiz" data-topic="konjunktiv">
+        <h3>Übungen mit direkter Rückmeldung</h3>
+        
+    <div class="q" data-answer="hätte" data-type="mc" data-name="konjunktiv_0">
+      <p><strong>1.</strong> Ich ___ gern mehr Zeit.</p>
+      <div class="options"><label class="option"><input type="radio" name="konjunktiv_0" value="hätte"> hätte</label><label class="option"><input type="radio" name="konjunktiv_0" value="habe"> habe</label><label class="option"><input type="radio" name="konjunktiv_0" value="hatte"> hatte</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="wäre" data-type="mc" data-name="konjunktiv_1">
+      <p><strong>2.</strong> Ich ___ gern in Deutschland.</p>
+      <div class="options"><label class="option"><input type="radio" name="konjunktiv_1" value="wäre"> wäre</label><label class="option"><input type="radio" name="konjunktiv_1" value="bin"> bin</label><label class="option"><input type="radio" name="konjunktiv_1" value="war"> war</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="würde" data-type="mc" data-name="konjunktiv_2">
+      <p><strong>3.</strong> Ich ___ gern mehr Deutsch sprechen.</p>
+      <div class="options"><label class="option"><input type="radio" name="konjunktiv_2" value="würde"> würde</label><label class="option"><input type="radio" name="konjunktiv_2" value="werde"> werde</label><label class="option"><input type="radio" name="konjunktiv_2" value="wurde"> wurde</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="würde" data-type="fill" data-name="konjunktiv_3">
+      <p><strong>4.</strong> Ich ______ gern eine Frage stellen.</p>
+      <input type="text" data-name="konjunktiv_3" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="Könnten Sie mir helfen?" data-type="mc" data-name="konjunktiv_4">
+      <p><strong>5.</strong> Welche Frage ist höflich?</p>
+      <div class="options"><label class="option"><input type="radio" name="konjunktiv_4" value="Könnten Sie mir helfen?"> Könnten Sie mir helfen?</label><label class="option"><input type="radio" name="konjunktiv_4" value="Du hilfst mir jetzt?"> Du hilfst mir jetzt?</label><label class="option"><input type="radio" name="konjunktiv_4" value="Hilf!"> Hilf!</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="würde" data-type="fill" data-name="konjunktiv_5">
+      <p><strong>6.</strong> Wenn ich Zeit hätte, ______ ich mehr lesen.</p>
+      <input type="text" data-name="konjunktiv_5" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="würde" data-type="fill" data-name="konjunktiv_6">
+      <p><strong>7.</strong> Wenn ich reich wäre, ______ ich reisen.</p>
+      <input type="text" data-name="konjunktiv_6" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="Ich hätte gern Wasser." data-type="mc" data-name="konjunktiv_7">
+      <p><strong>8.</strong> Welche Form ist korrekt?</p>
+      <div class="options"><label class="option"><input type="radio" name="konjunktiv_7" value="Ich hätte gern Wasser."> Ich hätte gern Wasser.</label><label class="option"><input type="radio" name="konjunktiv_7" value="Ich habe gern Wasser."> Ich habe gern Wasser.</label><label class="option"><input type="radio" name="konjunktiv_7" value="Ich hatte gern Wasser."> Ich hatte gern Wasser.</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="Wünsche und höfliche Bitten" data-type="mc" data-name="konjunktiv_8">
+      <p><strong>9.</strong> Wofür benutzt man Konjunktiv II?</p>
+      <div class="options"><label class="option"><input type="radio" name="konjunktiv_8" value="Wünsche und höfliche Bitten"> Wünsche und höfliche Bitten</label><label class="option"><input type="radio" name="konjunktiv_8" value="nur Vergangenheit"> nur Vergangenheit</label><label class="option"><input type="radio" name="konjunktiv_8" value="nur Passiv"> nur Passiv</label></div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="q" data-answer="würde" data-type="fill" data-name="konjunktiv_9">
+      <p><strong>10.</strong> Ich ______ gern nach Berlin fahren.</p>
+      <input type="text" data-name="konjunktiv_9" placeholder="Antwort eingeben">
+      <div class="feedback"></div>
+    </div>
+    
+        <div class="quiz-actions">
+          <button onclick="checkTopic('konjunktiv')">Prüfen</button>
+          <button class="secondary" onclick="resetTopic('konjunktiv')">Zurücksetzen</button>
+          <span class="score" id="score-konjunktiv"></span>
+        </div>
+      </div>
+    </section>
+    
+</main>
+
+<footer>B1 Grammatik · Übungen mit automatischer Rückmeldung</footer>
+
+<script>
+function normalize(s) {
+  return (s || "")
+    .toString()
+    .trim()
+    .toLowerCase()
+    .replace(/[.!?]/g, "")
+    .replace(/\s+/g, " ");
+}
+
+function getValue(q) {
+  const type = q.dataset.type;
+  if (type === "mc") {
+    const checked = q.querySelector("input[type=radio]:checked");
+    return checked ? checked.value : "";
+  }
+  const input = q.querySelector("input[type=text]");
+  return input ? input.value : "";
+}
+
+function checkTopic(topic) {
+  const quiz = document.querySelector('.quiz[data-topic="' + topic + '"]');
+  const qs = quiz.querySelectorAll(".q");
+  let correct = 0;
+  qs.forEach(q => {
+    const answer = q.dataset.answer;
+    const value = getValue(q);
+    const feedback = q.querySelector(".feedback");
+    const ok = normalize(value) === normalize(answer);
+    q.classList.remove("correct", "wrong");
+    feedback.classList.remove("ok", "no");
+    if (ok) {
+      correct++;
+      q.classList.add("correct");
+      feedback.classList.add("ok");
+      feedback.textContent = "✅ Richtig!";
+    } else {
+      q.classList.add("wrong");
+      feedback.classList.add("no");
+      feedback.textContent = "❌ Falsch. Richtige Antwort: " + answer;
+    }
+  });
+  document.getElementById("score-" + topic).textContent = "Punkte: " + correct + " / " + qs.length;
+  updateTotal();
+}
+
+function resetTopic(topic) {
+  const quiz = document.querySelector('.quiz[data-topic="' + topic + '"]');
+  quiz.querySelectorAll("input[type=text]").forEach(i => i.value = "");
+  quiz.querySelectorAll("input[type=radio]").forEach(i => i.checked = false);
+  quiz.querySelectorAll(".q").forEach(q => {
+    q.classList.remove("correct", "wrong");
+    const f = q.querySelector(".feedback");
+    f.textContent = "";
+    f.classList.remove("ok", "no");
+  });
+  document.getElementById("score-" + topic).textContent = "";
+  updateTotal();
+}
+
+function checkAll() {
+  document.querySelectorAll(".quiz").forEach(quiz => checkTopic(quiz.dataset.topic));
+}
+
+function resetAll() {
+  document.querySelectorAll(".quiz").forEach(quiz => resetTopic(quiz.dataset.topic));
+  document.getElementById("total-score").textContent = "";
+}
+
+function updateTotal() {
+  let correct = 0, total = 0, checkedAny = false;
+  document.querySelectorAll(".q").forEach(q => {
+    if (q.classList.contains("correct") || q.classList.contains("wrong")) {
+      checkedAny = true;
+      total++;
+      if (q.classList.contains("correct")) correct++;
+    }
+  });
+  document.getElementById("total-score").textContent = checkedAny ? "Gesamtpunkte: " + correct + " / " + total : "";
+}
+</script>
+</body>
+</html>
